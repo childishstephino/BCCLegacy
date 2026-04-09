@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCC Wix Transfer — Master Checklist</title>
+<style>
+:root{--bg:#f9f8f6;--bg2:#f2f0ed;--bg3:#ffffff;--border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.15);--text:#1a1a18;--text2:#6b6a66;--text3:#9c9b97;--blue-l:#E6F1FB;--blue-m:#185FA5;--blue-b:#B5D4F4;--green-l:#EAF3DE;--green-m:#3B6D11;--green-b:#C0DD97;--amber-l:#FAEEDA;--amber-m:#854F0B;--amber-b:#FAC775;--amber-dark:#633806;--red-l:#FCEBEB;--red-m:#791F1F;--red-b:#F7C1C1;--purple-l:#EEEDFE;--purple-m:#534AB7;--purple-b:#CECBF6;--teal-l:#E1F5EE;--teal-m:#0F6E56;--teal-b:#9FE1CB;--r:10px;--rs:6px}
+@media(prefers-color-scheme:dark){:root{--bg:#18181a;--bg2:#222224;--bg3:#2a2a2c;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--text:#e8e6e1;--text2:#9c9a92;--text3:#6b6a66;--blue-l:#0c2840;--blue-b:#1d4b7a;--green-l:#132808;--green-b:#2a5010;--amber-l:#2a1c04;--amber-b:#5a3208;--amber-dark:#e8a86a;--red-l:#2a0c0c;--red-b:#5a1a1a;--purple-l:#1a1840;--purple-b:#3a3480;--teal-l:#042418;--teal-b:#0a4a32}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh}
+.wrap{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.eyebrow{font-family:-apple-system,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+h1{font-size:26px;font-weight:400;line-height:1.2;margin-bottom:6px}
+.sub{font-family:-apple-system,sans-serif;font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.conf-lbl{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.chip{display:flex;align-items:center;gap:6px;padding:5px 11px;border-radius:99px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:500;background:var(--teal-l);color:var(--teal-m);border:.5px solid var(--teal-b)}
+.chip-dot{width:12px;height:12px;border-radius:50%;background:var(--teal-m);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0}
+.struct-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+@media(max-width:600px){.struct-grid{grid-template-columns:1fr}}
+.sbox{border-radius:var(--r);overflow:hidden;border:.5px solid var(--border)}
+.shdr{padding:9px 13px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:600;border-bottom:.5px solid var(--border)}
+.shdr.shapes{background:var(--blue-l);color:var(--blue-m);border-color:var(--blue-b)}
+.shdr.local{background:var(--green-l);color:var(--green-m);border-color:var(--green-b)}
+.sbody{padding:10px 13px;background:var(--bg3);display:flex;flex-direction:column;gap:3px}
+.si{font-family:-apple-system,sans-serif;font-size:11px;display:flex;gap:6px;align-items:flex-start;line-height:1.4;color:var(--text2)}
+.si.h2{color:var(--text)}.si.h3{padding-left:12px}
+.stag{font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;flex-shrink:0;margin-top:1px}
+.t-h1{background:var(--blue-l);color:var(--blue-m)}.t-h2{background:var(--teal-l);color:var(--teal-m)}.t-h3{background:var(--bg2);color:var(--text2)}.t-faq{background:var(--purple-l);color:var(--purple-m)}.t-cta{background:var(--amber-l);color:var(--amber-m)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:9px 13px;background:var(--bg2);border-radius:var(--rs);margin-bottom:1.5rem;border:.5px solid var(--border)}
+.lg{display:flex;align-items:center;gap:5px;font-family:-apple-system,sans-serif;font-size:11px;color:var(--text2)}
+.pbw{background:var(--bg2);border-radius:var(--r);padding:12px 16px;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;border:.5px solid var(--border)}
+.pbl{font-family:-apple-system,sans-serif;font-size:12px;color:var(--text2);flex-shrink:0}
+.bt{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px;background:var(--green-m);transition:width .3s}
+.pc{font-family:-apple-system,sans-serif;font-size:13px;font-weight:500;color:var(--text);min-width:44px;text-align:right}
+.phase-card{border:.5px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;background:var(--bg3);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.phase-card.dec{border-color:var(--amber-b)}
+.ph{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none;transition:background .12s}
+.ph:hover{background:var(--bg2)}
+.pnum{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:12px;font-weight:700;flex-shrink:0}
+.ptitle{flex:1;font-family:-apple-system,sans-serif;font-size:14px;font-weight:500;color:var(--text)}
+.pmeta{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.mp{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.mp-h{background:var(--amber-l);color:var(--amber-m);border:.5px solid var(--amber-b)}
+.mp-b{background:var(--red-l);color:var(--red-m);border:.5px solid var(--red-b)}
+.mp-d{background:var(--amber-l);color:var(--amber-dark);border:.5px solid var(--amber-b)}
+.pp{font-family:-apple-system,sans-serif;font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px;background:var(--bg2);color:var(--text2);border:.5px solid var(--border)}
+.chev{font-size:10px;color:var(--text3);transition:transform .2s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.pbody{display:none;padding:0 16px 14px}
+.pbody.open{display:block}
+.pnote{font-family:-apple-system,sans-serif;font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.6;padding:9px 11px;background:var(--bg2);border-radius:var(--rs)}
+.glbl{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin:14px 0 6px 2px}
+.ti{display:flex;align-items:flex-start;gap:10px;padding:8px 6px;border-bottom:.5px solid var(--border);cursor:pointer;border-radius:4px;transition:background .1s}
+.ti:last-of-type{border-bottom:none}.ti:hover{background:var(--bg2)}
+.ti.ih{background:rgba(250,200,117,.06)}.ti.ih:hover{background:rgba(250,200,117,.12)}
+.ti.id{background:rgba(250,200,117,.08);border-left:3px solid var(--amber-b);padding-left:9px}.ti.id:hover{background:rgba(250,200,117,.15)}
+.chk{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.chk.on{border-color:transparent}.chk.on::after{content:'✓';font-size:11px;color:#fff;font-weight:700}
+.tb{flex:1;min-width:0}.tr{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.tt{font-family:-apple-system,sans-serif;font-size:13px;color:var(--text);line-height:1.4;flex:1;min-width:100px;transition:all .15s}
+.tt.done{text-decoration:line-through;color:var(--text3)}
+.tsub{font-family:-apple-system,sans-serif;font-size:11px;color:var(--text2);margin-top:3px;line-height:1.5}
+.badge{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;white-space:nowrap;flex-shrink:0;display:inline-flex}
+.bc{background:var(--green-l);color:var(--green-m);border:.5px solid var(--green-b)}
+.bd{background:var(--amber-l);color:var(--amber-m);border:.5px solid var(--amber-b)}
+.bq{background:var(--red-l);color:var(--red-m);border:.5px solid var(--red-b)}
+.bde{background:var(--amber-l);color:var(--amber-dark);border:.5px solid var(--amber-b)}
+.bv{background:var(--bg2);color:var(--text2);border:.5px solid var(--border)}
+.bb{background:var(--red-l);color:var(--red-m);border:.5px solid var(--red-b)}
+.bh{background:var(--amber-l);color:var(--amber-m);border:.5px solid var(--amber-b)}
+.ib{margin-top:14px;border:.5px solid var(--border);border-radius:var(--rs);overflow:hidden}
+.ibl{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);padding:8px 12px;background:var(--bg2);border-bottom:.5px solid var(--border)}
+.ibd{padding:12px}
+.mhero{display:flex;height:80px;border-radius:var(--rs);overflow:hidden;border:.5px solid var(--border)}
+.mhl{flex:1;background:#EDE5DA;padding:10px 12px;display:flex;flex-direction:column;justify-content:flex-end}
+.mhr{flex:1;background:#1C2630;padding:10px 12px;display:flex;flex-direction:column;justify-content:flex-end}
+.mhd{width:2px;background:#fff;position:relative;flex-shrink:0}
+.mhor{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:8px;color:#666;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.mhey{font-family:-apple-system,sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.mht{font-family:-apple-system,sans-serif;font-size:11px;font-weight:500;line-height:1.2}
+.cmsg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:500px){.cmsg{grid-template-columns:1fr}}
+.cmsb{border-radius:var(--rs);padding:10px 12px;border:.5px solid}
+.cmsl{font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:7px}
+.cmsf{font-family:-apple-system,sans-serif;font-size:11px;display:flex;align-items:center;gap:5px;margin-bottom:4px;line-height:1.3}
+.cmsf.ind{padding-left:12px}.dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.psteps{display:flex;flex-direction:column;gap:7px}
+.pstep{display:flex;gap:11px;align-items:flex-start;padding:11px 13px;border-radius:var(--rs);background:var(--bg2);border:.5px solid var(--border)}
+.pstepn{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:12px;font-weight:700;flex-shrink:0;color:#fff}
+.pstept{font-family:-apple-system,sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.pstepd{font-family:-apple-system,sans-serif;font-size:11px;color:var(--text2);line-height:1.55}
+.pnotes{margin-top:9px;padding:8px 11px;background:var(--blue-l);border-radius:var(--rs);font-family:-apple-system,sans-serif;font-size:11px;color:var(--blue-m);border:.5px solid var(--blue-b)}
+.pl{display:flex;flex-direction:column;gap:4px}
+.pr{display:flex;align-items:center;gap:8px;font-family:-apple-system,sans-serif;font-size:12px;padding:4px 0;border-bottom:.5px solid var(--border)}
+.pr:last-child{border-bottom:none}.prk{width:18px;height:18px;border-radius:50%;background:var(--bg2);color:var(--text2);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.prn{flex:1;color:var(--text)}.prv{font-size:11px;color:var(--text2)}
+.rtbl{width:100%;border-collapse:collapse;font-size:11px}
+.rtbl th{font-family:-apple-system,sans-serif;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);padding:5px 8px;text-align:left;border-bottom:.5px solid var(--border)}
+.rtbl td{font-family:-apple-system,sans-serif;padding:6px 8px;border-bottom:.5px solid var(--border);color:var(--text);line-height:1.4}
+.rtbl tr:last-child td{border-bottom:none}.rtbl td:first-child{font-family:monospace;font-size:10px;color:var(--text2)}.rtbl td:last-child{color:var(--text2)}
+.unote{margin-top:8px;padding:7px 10px;background:var(--green-l);border-radius:var(--rs);font-family:-apple-system,sans-serif;font-size:11px;color:var(--green-m);border:.5px solid var(--green-b)}
+.skr{display:flex;align-items:center;gap:8px;font-family:-apple-system,sans-serif;font-size:11px;padding:4px 0;border-bottom:.5px solid var(--border)}
+.skr:last-child{border-bottom:none}.sks{font-family:monospace;font-size:10px;color:var(--text2);flex:1}.skw{color:var(--text3)}
+.dref{border:.5px solid var(--amber-b);border-radius:var(--rs);overflow:hidden;margin-top:12px}
+.drefl{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-dark);padding:7px 12px;background:var(--amber-l);border-bottom:.5px solid var(--amber-b)}
+.drefb{padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--bg3)}
+.di{font-family:-apple-system,sans-serif;font-size:12px;color:var(--text);padding:8px 10px;background:var(--bg2);border-radius:var(--rs);border:.5px solid var(--border);line-height:1.5}
+.di strong{font-weight:600}.di span{display:block;font-size:11px;color:var(--text2);margin-top:3px}
+footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-family:-apple-system,sans-serif;font-size:11px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Blind Corners &amp; Curves</div>
+<h1>Wix Transfer — Master Checklist</h1>
+<p class="sub">Concrete5 → Wix Studio &nbsp;·&nbsp; Specialty Shapes + Local HD Products &nbsp;·&nbsp; Last updated <span id="ds"></span></p>
+
+<div class="conf-lbl">Confirmed decisions</div>
+<div class="chips">
+  <div class="chip"><div class="chip-dot">✓</div>Homepage: Option A — split hero divider</div>
+  <div class="chip"><div class="chip-dot">✓</div>URL: keep /arched-blindsangled-shades/</div>
+  <div class="chip"><div class="chip-dot">✓</div>Two locked structures — one per track</div>
+  <div class="chip"><div class="chip-dot">✓</div>Concrete5 stays live during build</div>
+</div>
+
+<div class="struct-grid">
+  <div class="sbox">
+    <div class="shdr shapes">Specialty Shapes — locked structure</div>
+    <div class="sbody">
+      <div class="si h2"><span class="stag t-h2">H2</span>Overview (Intro Paragraph)</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Understanding [Shape] Windows</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Function &amp; Everyday Benefits</div>
+      <div class="si h3"><span class="stag t-h3">H3</span>Subcategory for Benefits</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Customization &amp; Style Options</div>
+      <div class="si h3"><span class="stag t-h3">H3</span>Material / Color / Design Options</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Motorization &amp; Ease of Use</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Installation &amp; Fit Guarantee</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Why Choose Blind Corners &amp; Curves</div>
+      <div class="si h2"><span class="stag t-cta">CTA</span>Call to Action</div>
+    </div>
+  </div>
+  <div class="sbox">
+    <div class="shdr local">HD Products — locked structure</div>
+    <div class="sbody">
+      <div class="si h2"><span class="stag t-h1">H1</span>Product + Denver / Front Range</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Overview / Product Introduction</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Sunlight Management + bullets</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Comfort, Privacy &amp; Energy Efficiency</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Motorization &amp; Smart Home Integration</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Premium Materials &amp; Specs + bullets</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Style, Design &amp; Interior Versatility</div>
+      <div class="si h2"><span class="stag t-h2">H2</span>Reliability + locally owned + CTA</div>
+      <div class="si h2"><span class="stag t-faq">FAQ</span>6 Q&amp;As — fact-first, AI optimised</div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="lg"><span class="badge bc">Confirmed ✓</span>Approved, ready</div>
+  <div class="lg"><span class="badge bd">Draft</span>Needs approval</div>
+  <div class="lg"><span class="badge bq">Confirm?</span>Status unclear</div>
+  <div class="lg"><span class="badge bde">Needs decision</span>Waiting on you</div>
+  <div class="lg"><span class="badge bb">Brian</span>Brian helps rewrite</div>
+  <div class="lg"><span class="badge bh">Extra hands</span>Helper task</div>
+</div>
+
+<div class="pbw">
+  <div class="pbl">Overall progress</div>
+  <div class="bt"><div class="bf" id="bar" style="width:0%"></div></div>
+  <div class="pc" id="count">0 / 72</div>
+</div>
+
+<div id="pc"></div>
+
+<footer>Blind Corners &amp; Curves · Wix Transfer Master Checklist · Progress saves in your browser</footer>
+</div>
+
+<script>
+const TOTAL=72,SK='bcc-checklist-html-v1';
+let C=JSON.parse(localStorage.getItem(SK)||'{}');
+
+const PH=[
+  {id:'p1',num:'1',title:'Split hero & design system',color:'#185FA5',light:'#E6F1FB',
+   note:'Start here. Fonts, colors, and spacing set in this phase carry through every other page.',
+   viz:'hero',
+   tasks:[
+    {id:'p1t1',t:'Finalize split hero layout in Wix Studio',s:'Two equal panels — local Denver left, specialty shapes right'},
+    {id:'p1t2',t:'Choose left panel photography / visuals',s:'Warm, residential — cream/linen tones'},
+    {id:'p1t3',t:'Choose right panel photography / visuals',s:'Architectural specialty shapes — dark/cool tones'},
+    {id:'p1t4',t:'Set brand fonts — heading and body',s:'Set as global Wix Studio styles so every page inherits them'},
+    {id:'p1t5',t:'Set color palette for both hero panels'},
+    {id:'p1t6',t:'Design navigation groupings',s:'"Specialty Shapes" | "Blinds, Shades & Shutters" | Motorized | Contact'},
+    {id:'p1t7',t:'Apply keyword research to homepage copy',s:'14,725 views — highest traffic page'},
+    {id:'p1t8',t:'Boss sign-off on homepage design ✓',s:'Already decided — Option A confirmed'},
+   ]},
+  {id:'p2',num:'2',title:'Build CMS collections & dynamic templates',color:'#BA7517',light:'#FAEEDA',
+   note:'Build both collections and templates before entering any content. Fields must map exactly to the locked structures above.',
+   viz:'cms',
+   tasks:[
+    {id:'p2t1',t:'Create Specialty Shapes CMS collection',s:'Fields: H1, Overview, Understanding the Shape, Benefits, Benefits H3, Customization, Material/Color H3, Motorization, Installation, Why BCC, CTA, Image, Video URL'},
+    {id:'p2t2',t:'Create Local HD Products CMS collection',s:'Fields: H1, Overview, Sunlight, Comfort, Motorization, Materials, Style, Reliability/CTA, FAQ ×6, Image, Video URL'},
+    {id:'p2t3',t:'Design dynamic page template — Specialty Shapes',s:'Must match global styles from Phase 1'},
+    {id:'p2t4',t:'Design dynamic page template — Local HD Products',s:'Must match global styles from Phase 1'},
+    {id:'p2t5',t:'Test Shapes template with Arched Blinds entry',s:'Confirmed copy ready — paste and verify layout',h:1},
+    {id:'p2t6',t:'Test HD Products template with one draft entry',s:'Layout test only — not approved copy yet',h:1},
+   ]},
+  {id:'p3',num:'3',title:'Write-up process — establish the 3 prompts',color:'#534AB7',light:'#EEEDFE',
+   note:'Before any HD product rewrite starts, the 3-prompt procedure must be followed in order every time.',
+   viz:'prompts',
+   tasks:[
+    {id:'p3t1',t:'Confirm 3-prompt procedure is set up and ready for all HD product pages',s:'Numerics/Snippets → Full page → Insert snippets. Must run in this order every time.'},
+    {id:'p3t2',t:'Approve HD product drafts — first batch (highest traffic)',s:'Duette → Silhouette → Pirouette → PowerView → Applause → Provenance → Banded Shades → EverWood → Parkland → Alustra Architectural Roller',ds:'draft'},
+    {id:'p3t3',t:'Approve HD product drafts — remaining batch',s:'Designer Solar → Luminette → Skyline → Sonnette → Vignette → Vertical Solutions → Aria → Alustra Woven Roller → Alustra Woven Roman → Aura → Cadence → Carole Fabrics → Design Studio Roman → Modern Precious Metals → Somner',ds:'draft'},
+    {id:'p3t4',t:'Eyebrow Arch Blinds — confirm approved or still draft',ds:'check'},
+   ]},
+  {id:'p4',num:'4',title:'Media prep — images & videos',color:'#0F6E56',light:'#E1F5EE',
+   note:'Do this before CMS entry. Every page needs a final image and a confirmed YouTube URL locked in before your helper starts populating.',
+   viz:null,
+   groups:[
+    {lbl:'Your tasks — select and approve media',tasks:[
+     {id:'p4t1',t:'Select hero image for each Specialty Shapes page',s:'Review existing Wix-hosted images from CSV export — decide keep, replace, or source new'},
+     {id:'p4t2',t:'Select hero image for each HD Product page',s:'Source from Hunter Douglas asset library — see helper task below'},
+     {id:'p4t3',t:'Decide video strategy for Specialty Shapes pages',s:'Shape-specific videos per page, or shared general arch/angled videos across all?',dec:1},
+     {id:'p4t4',t:'Record or source any new videos needed',s:'If new video: upload to YouTube first → copy the URL → paste into CMS video field. Do not upload video files directly to Wix.'},
+     {id:'p4t5',t:'Confirm final YouTube URL for each page that has a video',s:'One URL per page — goes directly into the CMS video field'},
+    ]},
+    {lbl:'Extra hands — media collection & renaming',tasks:[
+     {id:'p4t6',t:'Collect photos from Hunter Douglas asset library',s:'Download approved HD product images for each product page',h:1},
+     {id:'p4t7',t:'Generate alt tag phrase list using ChatGPT',s:'Input: HD Product name + approved cities + "near me". Output: alt tag phrases per image. Owner provides keyword list, helper runs prompt.',h:1},
+     {id:'p4t8',t:'Rename each image file based on ChatGPT-generated alt tag phrases',s:'File name = alt tag. Do this before uploading to Wix — names cannot be changed after upload.',h:1},
+    ]},
+   ]},
+  {id:'p5',num:'5',title:'Keyword matching',color:'#185FA5',light:'#E6F1FB',
+   note:'Annotation only — map keywords to pages. Do not start rewriting yet.',
+   viz:'pages',
+   tasks:[
+    {id:'p5t1',t:'Match specialty shape keywords to each shape CMS entry',s:'National + local Denver terms per shape — use Rewrite Hub Part 1 + Part 2 process'},
+    {id:'p5t2',t:'Match local HD product keywords to each product entry',s:'Denver, Aurora, Centennial, Highlands Ranch, etc.'},
+    {id:'p5t3',t:'Update "Missing Keyword Opportunities" column in Phase 1 spreadsheet',h:1},
+    {id:'p5t4',t:'Flag quick SEO fixes for top 10 traffic pages',s:'Title tags, meta descriptions, H1s — fast wins before full rewrites'},
+   ]},
+  {id:'p6',num:'6',title:'Populate CMS',color:'#3B6D11',light:'#EAF3DE',
+   note:'Only enter copy that is confirmed approved. Images must be renamed before upload. Videos must have a YouTube URL ready.',
+   viz:'redirects',
+   groups:[
+    {lbl:'Specialty shapes — confirmed copy, enter now',tasks:[
+     {id:'p6t1',t:'Arched Blinds',v:'4,870',h:1,conf:1},
+     {id:'p6t2',t:'Angled Blinds',v:'1,907',h:1,conf:1},
+     {id:'p6t3',t:'Pentagon Blinds',v:'569',h:1,conf:1},
+     {id:'p6t4',t:'Quarter Round Blinds',v:'1,471',h:1,conf:1},
+    ]},
+    {lbl:'Specialty shapes — write next (traffic order)',tasks:[
+     {id:'p6t5',t:'Arched / Angled hub',v:'5,734'},
+     {id:'p6t6',t:'Trapezoid Blinds',v:'4,877'},
+     {id:'p6t7',t:'Right Triangle Blinds',v:'2,035'},
+     {id:'p6t8',t:'Half-Moon / Half-Circle Arch',v:'1,562'},
+     {id:'p6t9',t:'Arch / Angled Pricing page',v:'1,477'},
+     {id:'p6t10',t:'Eyebrow Arch Blinds',s:'Confirm status first — Phase 3',v:'1,006'},
+     {id:'p6t11',t:'Palladium Arch Blinds',v:'468'},
+     {id:'p6t12',t:'A-Frame / Pitched Roof / Gable',v:'~400'},
+     {id:'p6t13',t:'Triangle Blinds',v:'~400'},
+    ]},
+    {lbl:'HD products — enter as each is approved',tasks:[
+     {id:'p6t14',t:'Upload renamed HD product images to Wix',s:'Images must be renamed before uploading',h:1},
+     {id:'p6t15',t:'Enter approved HD product pages into CMS one by one',s:'Copy + renamed image + YouTube URL per entry',h:1},
+    ]},
+    {lbl:'Cleanup',tasks:[
+     {id:'p6t16',t:'Set up 301 redirects in Wix domain settings'},
+     {id:'p6t17',t:'Site-wide text replace: PowerRise → PowerView',h:1},
+     {id:'p6t18',t:'Remove / redirect all Solera references to Honeycomb Shades'},
+    ]},
+   ]},
+  {id:'p7',num:'7',title:'Static pages & new pages',color:'#8B2FC9',light:'#EEEDFE',
+   note:'Ordered by traffic. Coordinate with Brian on his 5 pages before starting them.',
+   viz:'skip',
+   groups:[
+    {lbl:'Shared pages — both audiences',tasks:[
+     {id:'p7t1',t:'Get Estimate / Quote page',v:'3,151'},
+     {id:'p7t2',t:'Location & Hours',v:'1,917'},
+     {id:'p7t3',t:'About Us',v:'828',b:1},
+     {id:'p7t4',t:'Rebuild standalone FAQ page',s:'Separate page — pull FAQ content from all CMS and static pages into one FAQ hub'},
+    ]},
+    {lbl:'Local Denver — static (Brian confirmed on 4)',tasks:[
+     {id:'p7t5',t:'Shutters',v:'3,207',b:1},
+     {id:'p7t6',t:'Roller Shades & Sunscreens',v:'452',b:1,s:'Brian noted in GA spreadsheet'},
+     {id:'p7t7',t:'Blinds & Shades hub',v:'1,309',s:'Mainly links — minimal copy needed'},
+     {id:'p7t8',t:'Motorized / PowerView hub',v:'662',b:1},
+     {id:'p7t9',t:'Hunter Douglas PowerView page',v:'473',b:1},
+    ]},
+    {lbl:'New pages',tasks:[
+     {id:'p7t10',t:'Sonnette® — approve draft then build',s:'Draft exists in Rewrite Hub — approve first',ds:'draft'},
+    ]},
+   ]},
+  {id:'p8',num:'!',title:'Needs decisions before proceeding',color:'#854F0B',light:'#FAEEDA',
+   note:'These items cannot move forward until you make a call. Resolve the top two first — they block Phase 2 and Phase 4.',
+   viz:'decisions',
+   tasks:[
+    {id:'p8t1',t:'Specialty Shapes CSV — import as starting point or build CMS fresh?',s:'Recommendation: build fresh. Copy and structure in the CSV are outdated. Use it only as a shape list reference.',dec:1},
+    {id:'p8t2',t:'Which of the 42 extra shapes in the CSV do you want to eventually cover?',s:'26 shapes were on the legacy Concrete5 site. 42 additional variants exist — decide scope before building.',dec:1},
+    {id:'p8t3',t:'Video strategy for Specialty Shapes — shape-specific or shared?',s:'All 68 CSV pages currently share the same 2 YouTube videos. Decide before setting up the video field in CMS.',dec:1},
+    {id:'p8t4',t:'Eyebrow Arch Blinds — is the copy approved or still a draft?',dec:1},
+   ]},
+];
+
+function getAll(p){return p.groups?p.groups.flatMap(g=>g.tasks):p.tasks||[];}
+function save(){localStorage.setItem(SK,JSON.stringify(C));}
+
+function updateAll(){
+  const all=PH.flatMap(p=>getAll(p));
+  const n=all.filter(t=>C[t.id]).length;
+  document.getElementById('bar').style.width=Math.round(n/TOTAL*100)+'%';
+  document.getElementById('count').textContent=n+' / '+TOTAL;
+}
+
+function updatePhase(p){
+  const all=getAll(p),done=all.filter(t=>C[t.id]).length;
+  const pill=document.getElementById('pp-'+p.id);
+  if(pill)pill.textContent=done+' / '+all.length;
+  all.forEach(t=>{
+    const box=document.getElementById('bx-'+t.id),txt=document.getElementById('tx-'+t.id);
+    if(box){if(C[t.id]){box.style.background=p.color;box.style.borderColor=p.color;box.classList.add('on');}else{box.style.background='';box.style.borderColor='';box.classList.remove('on');}}
+    if(txt)txt.classList.toggle('done',!!C[t.id]);
+  });
+}
+
+function toggle(tid,pid){
+  C[tid]=!C[tid];save();
+  const p=PH.find(x=>x.id===pid);
+  updatePhase(p);updateAll();
+}
+
+function togglePhase(pid){
+  const body=document.getElementById('pb-'+pid),chev=document.getElementById('ch-'+pid);
+  body.classList.toggle('open');chev.classList.toggle('open');
+}
+
+function badges(t){
+  let b='';
+  if(t.conf)b+=`<span class="badge bc">Confirmed ✓</span>`;
+  else if(t.dec)b+=`<span class="badge bde">Needs decision</span>`;
+  else if(t.ds==='draft')b+=`<span class="badge bd">Draft</span>`;
+  else if(t.ds==='check')b+=`<span class="badge bq">Confirm?</span>`;
+  if(t.v)b+=`<span class="badge bv">${t.v} views</span>`;
+  if(t.b)b+=`<span class="badge bb">Brian</span>`;
+  if(t.h)b+=`<span class="badge bh">Extra hands</span>`;
+  return b;
+}
+
+function taskHTML(t,pid,col){
+  const checked=C[t.id];
+  return`<div class="ti${t.h?' ih':''}${t.dec?' id':''}" onclick="toggle('${t.id}','${pid}')">
+    <div class="chk${checked?' on':''}" id="bx-${t.id}" style="${checked?`background:${col};border-color:${col}`:''}"></div>
+    <div class="tb">
+      <div class="tr"><div class="tt${checked?' done':''}" id="tx-${t.id}">${t.t}</div>${badges(t)}</div>
+      ${t.s?`<div class="tsub">${t.s}</div>`:''}
+    </div>
+  </div>`;
+}
+
+function vizHero(){return`<div class="ib"><div class="ibl">Confirmed — Option A split hero</div><div class="ibd"><div class="mhero"><div class="mhl"><div class="mhey" style="color:#7A5C3E">Denver showroom</div><div class="mht" style="color:#2C1F14">Hunter Douglas products</div></div><div class="mhd"><div class="mhor">or</div></div><div class="mhr"><div class="mhey" style="color:#7BAFD4">Nationwide</div><div class="mht" style="color:#F0EAE2">Specialty shapes</div></div></div></div></div>`;}
+
+function vizCMS(){
+  const sf=['H1','Overview (Intro Paragraph)','Understanding [Shape] Windows','Function &amp; Everyday Benefits','→ H3: Subcategory for Benefits','Customization &amp; Style Options','→ H3: Material / Color / Design Options','Motorization &amp; Ease of Use','Installation &amp; Fit Guarantee','Why Choose Blind Corners &amp; Curves','CTA','Image','Video URL'];
+  const lf=['H1 + Denver / Front Range','Overview / Product Introduction','Sunlight Management + bullets','Comfort, Privacy &amp; Energy Efficiency','Motorization &amp; Smart Home Integration','Premium Materials &amp; Specs + bullets','Style, Design &amp; Interior Versatility','Reliability + locally owned + CTA','FAQ ×6 — fact-first, AI optimised','Image','Video URL'];
+  return`<div class="ib"><div class="ibl">CMS field schemas — one per track</div><div class="ibd"><div class="cmsg"><div class="cmsb" style="background:var(--blue-l);border-color:var(--blue-b)"><div class="cmsl" style="color:var(--blue-m)">Specialty Shapes</div>${sf.map(f=>`<div class="cmsf${f.startsWith('→')?' ind':''}" style="color:var(--blue-m)"><div class="dot" style="background:${f.startsWith('→')?'#888':'var(--blue-m)'}"></div>${f.replace('→ ','')}</div>`).join('')}</div><div class="cmsb" style="background:var(--green-l);border-color:var(--green-b)"><div class="cmsl" style="color:var(--green-m)">HD Products</div>${lf.map(f=>`<div class="cmsf" style="color:var(--green-m)"><div class="dot" style="background:var(--green-m)"></div>${f}</div>`).join('')}</div></div></div></div>`;}
+
+function vizPrompts(){return`<div class="ib"><div class="ibl">3-prompt write-up procedure — follow this order every time</div><div class="ibd"><div class="psteps"><div class="pstep"><div class="pstepn" style="background:#185FA5">1</div><div><div class="pstept">Generate NUMERICS + SNIPPETS first</div><div class="pstepd">Run the numerics/snippets prompt to produce clean, locked factual data — statistics, spec numbers, product-specific facts. Output in locked format only. Do not write page copy yet.</div></div></div><div class="pstep"><div class="pstepn" style="background:#3B6D11">2</div><div><div class="pstept">Generate the full HD long-form page separately</div><div class="pstepd">Run the full HD product write-up prompt using the locked structure. Write the complete page from H1 through FAQ. Do not insert numerics yet — write the narrative first.</div></div></div><div class="pstep"><div class="pstepn" style="background:#854F0B">3</div><div><div class="pstept">Insert numerics / snippets into the finished page</div><div class="pstepd">After the full page is written and approved, go back and insert the Step 1 numerics and factual snippets. Keeps copy clean and facts accurate.</div></div></div></div><div class="pnotes">This procedure applies to all HD Product pages. Specialty Shapes pages use the Rewrite Hub Part 1 + Part 2 process instead.</div></div></div>`;}
+
+function vizPages(){
+  const p=[['Homepage','14,725'],['Arched/Angled hub','5,734'],['Trapezoid Blinds','4,877'],['Arched Blinds','4,870'],['Get Estimate','3,824'],['Shutters','3,471'],['Location & Hours','2,075'],['Right Triangle','2,035'],['Angled Blinds','1,907'],['Half-Moon Arch','1,685']];
+  return`<div class="ib"><div class="ibl">Priority page order for keyword matching</div><div class="ibd"><div class="pl">${p.map(([n,v],i)=>`<div class="pr"><div class="prk">${i+1}</div><div class="prn">${n}</div><div class="prv">${v} views</div></div>`).join('')}</div></div></div>`;}
+
+function vizRedirects(){
+  const rows=[['…/duetteapplausesolera-honeycomb-shades','/honeycomb-shades','Solera discontinued'],['…/mirage-transitional-shade','/banded-shades','Rebranded'],['…/blindsshadesshutters-1 &amp; -2','UTM params','Geo ad pages'],['…/shoji-screens','/blindsshadesshutters','Remove from nav'],['…/service-repair/blind-repair-services','/service-repair','Duplicate']];
+  return`<div class="ib"><div class="ibl">301 redirects to set up</div><div class="ibd" style="padding:8px"><table class="rtbl"><thead><tr><th>Old slug</th><th>New destination</th><th>Reason</th></tr></thead><tbody>${rows.map(([o,n,r])=>`<tr><td>${o}</td><td>${n}</td><td>${r}</td></tr>`).join('')}</tbody></table><div class="unote">✓ /arched-blindsangled-shades/ stays as-is — revisit after launch.</div></div></div>`;}
+
+function vizSkip(){
+  const p=[['/service-repair','Non-nav, keep hidden'],['/plantation-shutter-louver-replacement-video','Video only'],['/blind-repair-services','Duplicate — remove'],['/shoji-screens','Flagged for removal'],['/roller-shade-available-materials','Low traffic'],['/wood-blind-available-materials','Low traffic'],['/pirouette-video','Video only'],['/motorized-alustra-silhouette','Video only'],['/blindsshadesshutters-1,-2,-3','Geo duplicates']];
+  return`<div class="ib"><div class="ibl">Intentionally skipped — low traffic or non-essential</div><div class="ibd" style="padding:8px">${p.map(([s,r])=>`<div class="skr"><div class="sks">${s}</div><div class="skw">${r}</div></div>`).join('')}</div></div>`;}
+
+function vizDecisions(){return`<div class="dref"><div class="drefl">What each decision blocks</div><div class="drefb"><div class="di"><strong>CSV decision</strong><span>Blocks Phase 2 CMS setup for Specialty Shapes</span></div><div class="di"><strong>Which extra shapes to keep</strong><span>Blocks knowing the total scope of the CMS</span></div><div class="di"><strong>Video strategy</strong><span>Blocks the video field setup in the CMS</span></div><div class="di"><strong>Eyebrow Arch status</strong><span>Blocks CMS entry for that page</span></div></div></div>`;}
+
+function getViz(v){
+  if(v==='hero')return vizHero();
+  if(v==='cms')return vizCMS();
+  if(v==='prompts')return vizPrompts();
+  if(v==='pages')return vizPages();
+  if(v==='redirects')return vizRedirects();
+  if(v==='skip')return vizSkip();
+  if(v==='decisions')return vizDecisions();
+  return'';
+}
+
+function render(){
+  const cont=document.getElementById('pc');
+  cont.innerHTML=PH.map((p,i)=>{
+    const all=getAll(p);
+    const hc=all.filter(t=>t.h).length,bc=all.filter(t=>t.b).length,dc=all.filter(t=>t.dec).length;
+    const done=all.filter(t=>C[t.id]).length;
+    let body=p.groups
+      ?p.groups.map(g=>`<div class="glbl">${g.lbl}</div>${g.tasks.map(t=>taskHTML(t,p.id,p.color)).join('')}`).join('')
+      :(p.tasks||[]).map(t=>taskHTML(t,p.id,p.color)).join('');
+    return`<div class="phase-card${p.id==='p8'?' dec':''}">
+      <div class="ph" onclick="togglePhase('${p.id}')">
+        <div class="pnum" style="background:${p.light};color:${p.color}">${p.num}</div>
+        <div class="ptitle">${p.title}</div>
+        <div class="pmeta">
+          ${dc?`<span class="mp mp-d">${dc} to decide</span>`:''}
+          ${bc?`<span class="mp mp-b">${bc} Brian</span>`:''}
+          ${hc?`<span class="mp mp-h">${hc} extra hands</span>`:''}
+          <span class="pp" id="pp-${p.id}">${done} / ${all.length}</span>
+          <span class="chev" id="ch-${p.id}">▼</span>
+        </div>
+      </div>
+      <div class="pbody${i===0?' open':''}" id="pb-${p.id}">
+        <div class="pnote">${p.note}</div>
+        ${body}
+        ${p.viz?getViz(p.viz):''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('ds').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+render();
+updateAll();
+document.getElementById('ch-p1').classList.add('open');
+</script>
+</body>
+</html>
