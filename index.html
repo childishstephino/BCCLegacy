@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +110,22 @@ h1{font-size:26px;font-weight:400;line-height:1.2;margin-bottom:6px}
 .drefb{padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--bg3)}
 .di{font-family:-apple-system,sans-serif;font-size:12px;color:var(--text);padding:8px 10px;background:var(--bg2);border-radius:var(--rs);border:.5px solid var(--border);line-height:1.5}
 .di strong{font-weight:600}.di span{display:block;font-size:11px;color:var(--text2);margin-top:3px}
-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-family:-apple-system,sans-serif;font-size:11px;color:var(--text3);text-align:center}
+.tab-row{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.tab{padding:9px 18px;font-family:-apple-system,sans-serif;font-size:13px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.tab.active{color:var(--text);border-bottom-color:var(--text)}
+.rt-intro{font-family:-apple-system,sans-serif;font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:1rem;padding:9px 11px;background:var(--bg2);border-radius:var(--rs);border:.5px solid var(--border)}
+.rt-group-lbl{font-family:-apple-system,sans-serif;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.rt-group{border:.5px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--bg3)}
+.rt-row{display:flex;align-items:center;gap:10px;padding:9px 13px;border-bottom:.5px solid var(--border);cursor:pointer;transition:background .1s}
+.rt-row:last-child{border-bottom:none}
+.rt-row:hover{background:var(--bg2)}
+.rt-row.skip-row-rt{opacity:.55;cursor:default}
+.rt-row.skip-row-rt:hover{background:transparent}
+.rt-name{font-family:-apple-system,sans-serif;font-size:13px;color:var(--text);flex:1;min-width:0}
+.rt-name.done{text-decoration:line-through;color:var(--text3)}
+.rt-slug{font-family:monospace;font-size:10px;color:var(--text3);display:block;margin-top:1px}
+.rt-views{font-family:-apple-system,sans-serif;font-size:11px;color:var(--text2);white-space:nowrap;flex-shrink:0}
+
 </style>
 </head>
 <body>
@@ -174,7 +190,34 @@ footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);fon
   <div class="pc" id="count">0 / 72</div>
 </div>
 
-<div id="pc"></div>
+<div class="tab-row">
+  <button class="tab active" onclick="showTab('checklist',this)">Master checklist</button>
+  <button class="tab" onclick="showTab('rewrites',this)">Rewrite tracker</button>
+</div>
+
+<div id="view-checklist">
+  <div id="pc"></div>
+</div>
+
+<div id="view-rewrites" style="display:none">
+  <div class="rt-intro">Pages ordered by GA traffic (Jan–Oct 2025). Check off each page as its rewrite is completed and entered into Wix. Pages with no rewrite flag are low priority — leave as-is for now.</div>
+
+  <div class="pbw" style="margin-top:0">
+    <div class="pbl">Rewrite progress</div>
+    <div class="bt"><div class="bf" id="rbar" style="width:0%"></div></div>
+    <div class="pc" id="rcount">0 / 23</div>
+  </div>
+
+  <div class="rt-group-lbl">Specialty shapes track</div>
+  <div class="rt-group" id="rg-shapes"></div>
+
+  <div class="rt-group-lbl" style="margin-top:18px">Static &amp; shared pages</div>
+  <div class="rt-group" id="rg-static"></div>
+
+  <div class="rt-group-lbl" style="margin-top:18px">Low priority — no rewrite flagged</div>
+  <div class="rt-intro" style="margin-bottom:8px">These pages were not marked for rewrite in the GA spreadsheet. Leave as-is until priority pages are done.</div>
+  <div class="rt-group" id="rg-skip"></div>
+</div>
 
 <footer>Blind Corners &amp; Curves · Wix Transfer Master Checklist · Progress saves in your browser</footer>
 </div>
@@ -426,9 +469,111 @@ function render(){
 }
 
 document.getElementById('ds').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+// ── Tab switcher ──────────────────────────────────────────────
+function showTab(id,btn){
+  document.getElementById('view-checklist').style.display=id==='checklist'?'block':'none';
+  document.getElementById('view-rewrites').style.display=id==='rewrites'?'block':'none';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  if(id==='rewrites')updateRewriteProgress();
+}
+
+// ── Rewrite tracker data ──────────────────────────────────────
+const RW_SK='bcc-rewrites-v1';
+let RW=JSON.parse(localStorage.getItem(RW_SK)||'{}');
+
+const SHAPES=[
+  {id:'rw01',name:'Arched/Angled hub',slug:'/arched-blindsangled-shades',v:'5,348'},
+  {id:'rw02',name:'Trapezoid Blinds',slug:'/arched-blindsangled-shades/trapezoid-blinds',v:'4,657'},
+  {id:'rw03',name:'Arched Blinds',slug:'/arched-blindsangled-shades/arched-blinds',v:'4,550'},
+  {id:'rw04',name:'Right Triangle Blinds',slug:'/arched-blindsangled-shades/Right-Triangle-Window-Blinds-and-Shades',v:'1,940'},
+  {id:'rw05',name:'Angled Blinds',slug:'/arched-blindsangled-shades/angled-blinds',v:'1,775'},
+  {id:'rw06',name:'Half-Moon Arch',slug:'/arched-blindsangled-shades/Half-Moon-Arch-Window-Blinds-and-Shades',v:'1,562'},
+  {id:'rw07',name:'Arch/Angled Videos page',slug:'/arched-blindsangled-shades/archangled-blind-videos',v:'1,558'},
+  {id:'rw08',name:'Arch/Angled Pricing page',slug:'/arched-blindsangled-shades/archangled-blind-pricing',v:'1,477'},
+  {id:'rw09',name:'Quarter Arch Blinds',slug:'/arched-blindsangled-shades/quarter-arch-blinds',v:'1,471'},
+  {id:'rw10',name:'Half-Circle Arch',slug:'/arched-blindsangled-shades/Half-Circle-Arch-Window-Blinds-and-Shades',v:'1,067'},
+  {id:'rw11',name:'Thank You page',slug:'/arched-blindsangled-shades/arched-angled-thank-you-page',v:'1,020'},
+  {id:'rw12',name:'Eyebrow Arch Blinds',slug:'/arched-blindsangled-shades/Eyebrow-Arch-Window-Blinds-and-Shades',v:'1,006'},
+  {id:'rw13',name:'Triangle Blinds',slug:'/arched-blindsangled-shades/triangle-blinds',v:'834'},
+  {id:'rw14',name:'Angle Top Blinds',slug:'/arched-blindsangled-shades/Angle-Top-Blinds-and-Shades',v:'782'},
+];
+
+const STATIC=[
+  {id:'rw15',name:'Homepage',slug:'/',v:'13,516'},
+  {id:'rw16',name:'Shutters',slug:'/shutters',v:'3,207',brian:1},
+  {id:'rw17',name:'Get Estimate',slug:'/get-estimate',v:'3,151'},
+  {id:'rw18',name:'Location & Hours',slug:'/about-us/location-hours',v:'1,917'},
+  {id:'rw19',name:'Blinds & Shades hub',slug:'/blindsshadesshutters',v:'1,309',note:'Links only — minimal copy'},
+  {id:'rw20',name:'About Us',slug:'/about-us',v:'828',brian:1},
+  {id:'rw21',name:'Motorized / PowerView hub',slug:'/motorized-blindsshades',v:'662',brian:1},
+  {id:'rw22',name:'Hunter Douglas PowerView page',slug:'/motorized-blindsshades/hunter-douglas-powerview',v:'473',brian:1},
+  {id:'rw23',name:'Roller Shades & Sunscreens',slug:'/blindsshadesshutters/roller-shades-sunscreens',v:'452',brian:1},
+];
+
+const SKIP=[
+  {id:'rws01',name:'Silhouette/Pirouette/Woven/Roman/Mirage hub',slug:'/blindsshadesshutters/silhouettepirouettewoven-woodsroman-shadesmirage-shades',v:'775'},
+  {id:'rws02',name:'A-Frame Blinds',slug:'/arched-blindsangled-shades/A-Frame-Blinds-and-Shades',v:'716'},
+  {id:'rws03',name:'Arched Window Blinds (generic)',slug:'/arched-blindsangled-shades/arched-window-blinds',v:'712'},
+  {id:'rws04',name:'Pitched Roof Blinds',slug:'/arched-blindsangled-shades/Pitched-Roof-Window-Blinds-and-Shades',v:'579'},
+  {id:'rws05',name:'Quarter Round Arch',slug:'/arched-blindsangled-shades/Quarter-Round-Arch-Window-Blinds-and-Shades',v:'571'},
+  {id:'rws06',name:'Pentagon Blinds',slug:'/arched-blindsangled-shades/pentagon-blinds',v:'569'},
+  {id:'rws07',name:'Gable Window Blinds',slug:'/arched-blindsangled-shades/Gable-Window-Blinds-and-Shades',v:'506'},
+  {id:'rws08',name:'Trapezoid operation diagrams',slug:'/arched-blindsangled-shades/trapezoid-blind-and-angled-blind-operation-diagrams',v:'482'},
+  {id:'rws09',name:'Honeycomb Shades hub',slug:'/blindsshadesshutters/duetteapplausesolera-honeycomb-shades',v:'477',note:'Maybe — links only'},
+  {id:'rws10',name:'Palladium Arch',slug:'/arched-blindsangled-shades/Palladium-Arch-Window-Blinds-and-Shades',v:'468'},
+];
+
+const RW_TOTAL=SHAPES.length+STATIC.length;
+
+function saveRW(){localStorage.setItem(RW_SK,JSON.stringify(RW));}
+
+function updateRewriteProgress(){
+  const all=[...SHAPES,...STATIC];
+  const done=all.filter(r=>RW[r.id]).length;
+  const pct=Math.round(done/RW_TOTAL*100);
+  document.getElementById('rbar').style.width=pct+'%';
+  document.getElementById('rcount').textContent=done+' / '+RW_TOTAL;
+}
+
+function toggleRW(id,isSkip){
+  if(isSkip)return;
+  RW[id]=!RW[id];
+  saveRW();
+  const chk=document.getElementById('rc-'+id);
+  const txt=document.getElementById('rn-'+id);
+  const p=SHAPES.concat(STATIC).find(r=>r.id===id);
+  const allRows=[...SHAPES,...STATIC,...SKIP];
+  const row=allRows.find(r=>r.id===id);
+  if(chk){if(RW[id]){chk.classList.add('on');chk.style.background='#3B6D11';chk.style.borderColor='#3B6D11';}else{chk.classList.remove('on');chk.style.background='';chk.style.borderColor='';}}
+  if(txt)txt.classList.toggle('done',!!RW[id]);
+  updateRewriteProgress();
+}
+
+function rwRowHTML(r,isSkip){
+  const checked=!isSkip&&RW[r.id];
+  return`<div class="rt-row${isSkip?' skip-row-rt':''}" onclick="toggleRW('${r.id}',${isSkip?1:0})">
+    ${!isSkip?`<div class="chk${checked?' on':''}" id="rc-${r.id}" style="${checked?'background:#3B6D11;border-color:#3B6D11':''}"></div>`:'<div style="width:18px;flex-shrink:0"></div>'}
+    <div style="flex:1;min-width:0">
+      <div class="rt-name${checked?' done':''}" id="rn-${r.id}">${r.name}${r.brian?` <span class="badge bb" style="margin-left:5px">Brian</span>`:''}${r.note?` <span class="badge bv" style="margin-left:5px">${r.note}</span>`:''}</div>
+      <div class="rt-slug">${r.slug}</div>
+    </div>
+    <div class="rt-views">${r.v} views</div>
+  </div>`;
+}
+
+function renderRewriteTracker(){
+  document.getElementById('rg-shapes').innerHTML=SHAPES.map(r=>rwRowHTML(r,false)).join('');
+  document.getElementById('rg-static').innerHTML=STATIC.map(r=>rwRowHTML(r,false)).join('');
+  document.getElementById('rg-skip').innerHTML=SKIP.map(r=>rwRowHTML(r,true)).join('');
+  updateRewriteProgress();
+}
+
 render();
 updateAll();
 document.getElementById('ch-p1').classList.add('open');
+renderRewriteTracker();
 </script>
 </body>
 </html>
